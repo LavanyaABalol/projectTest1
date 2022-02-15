@@ -1,0 +1,16 @@
+
+
+<div class="container mt-3">
+    <h2>{{result.customerFName}}</h2>
+    <p>Complete Data</p>
+    <div class="card" style="width:400px">
+      <img class="card-img-top" src="../assets/images/userimage.png" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <h4 class="card-title">UserName:&nbsp;&nbsp; {{result.customerFName}}</h4>
+        <h4 class="card-title">User Last Name:&nbsp;&nbsp;{{result.customerLName}}</h4>
+        <p class="card-text">User Country:&nbsp;&nbsp;{{result.country}}</p>
+        <p class="card-text">User DataCreated:&nbsp;&nbsp;{{result.createdDate}}</p>
+        <a href="#" class="btn btn-primary" (click)="backtoView()">BackToView</a>
+      </div>
+    </div>
+

@@ -1,0 +1,136 @@
+<div class="container mt-3 border border-1">
+    <h2 style="margin-left:35%;">CUSTOMER-DATA</h2>
+    <p><button type="button" class="btn btn-secondary" (click)="AdduserC(content1)">AddUser</button></p>  
+    
+   
+    <table class="table table-striped">
+      <thead>
+        <tr>
+            <th>Id</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Country</th>
+            <th>CreatedDate</th>
+            <th colspan="3">Edit</th>
+          </tr>
+          </thead>
+       
+      
+            <tbody>
+          <tr *ngFor="let c of result">
+            <td>{{c.CustomerId}}</td>
+            <td>{{c.CustomerFName}}</td>
+            <td>{{c.CustomerLName}}</td>
+            <td>{{c.Country}}</td>
+            <td>{{c.CreatedDate}}</td>
+            <td><button type="button" class="btn btn-success" (click)="updateCustomer(updatecontent,c.CustomerId)">EDIT</button></td>
+            <td><button type="button" class="btn btn-success" (click)="deleteCustomer(c.CustomerId)">DELETE</button></td>
+            <td><button type="button" class="btn btn-success" (click)="open(content,c.CustomerId)">VIEW</button></td>
+          
+          </tr>
+      
+       
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">VIEW CUSTOMER DATA</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+   
+
+
+    <div class="card" style="width:400px">
+      <img class="card-img-top" src="../assets/images/userimage.png" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <h4 class="card-title">UserName:&nbsp;&nbsp; {{result12.customerFName}}</h4>
+        <h4 class="card-title">User Last Name:&nbsp;&nbsp;{{result12.customerLName}}</h4>
+        <p class="card-text">User Country:&nbsp;&nbsp;{{result12.country}}</p>
+        <p class="card-text">User DataCreated:&nbsp;&nbsp;{{result12.createdDate}}</p>
+        <a href="#" class="btn btn-primary" (click)="modal.close('Save click')">BackToView</a>
+      </div>
+    </div>
+
+
+    </div>
+   
+  </ng-template>
+
+  <ng-template #content1 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">ADD NEW CUSTOMER</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="adduser" (ngSubmit)="onsubmit(content1)" novalidate>
+        <label for="CustomerFName">FirstName </label>
+        <input class="form-control" placeholder="Enter First Name" type="text" formControlName="CustomerFName"><br/>
+        <div class="alert alert-danger" *ngIf="CustomerFName.errors.required && CustomerFName.touched">
+          User first Name required....!
+          </div>
+          <div class="alert alert-danger" *ngIf="CustomerFName.errors.maxlength">
+            User first Name maxlength 30 characters...!
+            </div>
+    
+        <label for="CustomerLName">LastName </label>
+        <input class="form-control" type="text" placeholder="Enter Last Name" formControlName="CustomerLName"><br/>
+        <div class="alert alert-danger" *ngIf=" CustomerLName.errors.required  && CustomerLName.touched">
+            User Last Name required....!
+              </div>
+              <div class="alert alert-danger" *ngIf="CustomerLName.errors.maxlength">
+                User Last Name maxlength 30 characters...!
+                </div>
+    
+    
+        <label for="Country">Country </label>
+        <input class="form-control" type="text" placeholder="Enter Country Name" formControlName="Country"><br/>
+        <div class="alert alert-danger" *ngIf="CustomerLName.errors.required && Country.touched">
+            User Country required....!
+              </div>
+    
+        <input type="submit" name="submit"  class="btn btn-primary" value="AddUser">
+        <button type="button" class="btn btn-secondary float-end" (click)="modal.close('Save click')">Back To List</button>
+    
+    </form>
+    </div>
+ 
+  </ng-template>
+
+
+  <ng-template #updatecontent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">UPDATE CUSTOMER DATA</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="updateuser" (ngSubmit)="onsubmitupdate()" novalidate>
+        <label for="CustomerFName">FirstName </label>
+        <input class="form-control" type="text" placeholder="Enter First Name"formControlName="CustomerFName"><br/>
+      
+    
+        <label for="CustomerLName">LastName </label>
+        <input class="form-control" type="text"  placeholder="Enter Last Name" formControlName="CustomerLName"><br/>
+    
+    
+    
+        <label for="Country">Country </label>
+        <input class="form-control" type="text"  placeholder="Enter country name" formControlName="Country"><br/>
+      
+    
+        <input type="submit"  class="btn btn-primary" name="submit" value="UpdateUser">
+        <button type="button" class="btn btn-secondary float-end" (click)="modal.close('Save click')">Back To List</button>
+    
+    
+    </form>
+    </div>
+    
+  </ng-template>

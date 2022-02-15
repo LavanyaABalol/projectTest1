@@ -1,0 +1,43 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <h3>ADD CUSTOMER DATA</h3>
+<form [formGroup]="adduser" (ngSubmit)="onsubmit()" novalidate>
+    <label for="CustomerFName">FirstName </label>
+    <input class="form-control" type="text" formControlName="CustomerFName"><br/>
+    <div class="alert alert-danger" *ngIf="CustomerFName.errors.required && CustomerFName.touched">
+      User first Name required....!
+      </div>
+      <div class="alert alert-danger" *ngIf="CustomerFName.errors.maxlength">
+        User first Name maxlength 30 characters...!
+        </div>
+
+    <label for="CustomerLName">LastName </label>
+    <input class="form-control" type="text" formControlName="CustomerLName"><br/>
+    <div class="alert alert-danger" *ngIf="CustomerLName.errors.required  && CustomerLName.touched">
+        User Last Name required....!
+          </div>
+          <div class="alert alert-danger" *ngIf="CustomerLName.errors.maxlength">
+            User Last Name maxlength 30 characters...!
+            </div>
+
+
+    <label for="Country">Country </label>
+    <input class="form-control" type="text" formControlName="Country"><br/>
+    <div class="alert alert-danger" *ngIf="CustomerLName.errors.required && Country.touched">
+        User Country required....!
+          </div>
+
+    <input type="submit" name="submit"  class="btn btn-primary" value="AddUser">
+    <button type="button" class="btn btn-secondary float-end" (click)="backV()">Back To List</button>
+
+</form>
+</div>
+<div class="col-sm-3"></div>
+</div>
+</div>
+
+<router-outlet name="addressPage"></router-outlet>
+
